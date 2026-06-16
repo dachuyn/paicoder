@@ -386,4 +386,7 @@ curl localhost:6839/health   # check bridge running
 ```
 ---
 
-*Built with Claude. Refined through use. Designed to last.*
+*pAiCoder - Helping developers develop better software faster*
+
+*Plan with Claude. Implement with Grok. Refined through use. Designed to last.*
+

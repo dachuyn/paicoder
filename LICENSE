@@ -1,0 +1,114 @@
+pAiCoder Software License Agreement
+=====================================
+
+Copyright (c) 2026 pAiCoder. All rights reserved.
+
+EVALUATION LICENSE
+
+This software and associated documentation files (the "Software") are
+provided for evaluation and trial purposes only. By installing, copying,
+or using the Software, you agree to the terms of this license.
+
+1. GRANT OF LICENSE
+
+   Subject to the terms of this Agreement, pAiCoder grants you a
+   non-exclusive, non-transferable, limited license to install and use
+   the Software solely for personal evaluation and trial purposes for a
+   period of 90 days from the date of first installation ("Trial Period").
+
+2. RESTRICTIONS
+
+   You may not:
+   a. Use the Software for commercial purposes during the Trial Period
+      without obtaining a commercial license from pAiCoder.
+   b. Copy, modify, merge, publish, distribute, sublicense, or sell
+      copies of the Software or its source code.
+   c. Reverse engineer, decompile, or disassemble the Software, except
+      to the extent permitted by applicable law.
+   d. Remove or alter any proprietary notices, labels, or marks on the
+      Software.
+   e. Transfer, sublicense, or assign this license or the Software to
+      any third party.
+
+3. TRIAL PERIOD
+
+   The Software is provided for a 90-day evaluation period. After the
+   Trial Period expires, you must either obtain a commercial license or
+   uninstall and cease all use of the Software. pAiCoder reserves the
+   right to enforce this limitation technically within the Software.
+
+4. API KEYS AND THIRD-PARTY SERVICES
+
+   The Software interfaces with third-party AI services (including
+   Anthropic, xAI, OpenAI, and Ollama). Use of those services is
+   governed by their respective terms of service. You are solely
+   responsible for obtaining and paying for any API keys and associated
+   usage costs required to operate the Software.
+
+5. INTELLECTUAL PROPERTY
+
+   The Software, including all source code, object code, documentation,
+   and related materials, is the exclusive property of pAiCoder and is
+   protected by copyright laws and international treaty provisions.
+   This Agreement does not grant you any intellectual property rights
+   in the Software beyond the limited evaluation license described herein.
+
+6. NO WARRANTY
+
+   THE SOFTWARE IS PROVIDED "AS IS" FOR EVALUATION PURPOSES, WITHOUT
+   WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+   TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+   AND NON-INFRINGEMENT. PAICODER DOES NOT WARRANT THAT THE SOFTWARE
+   WILL BE ERROR-FREE OR THAT DEFECTS WILL BE CORRECTED.
+
+7. LIMITATION OF LIABILITY
+
+   IN NO EVENT SHALL PAICODER BE LIABLE FOR ANY INDIRECT, INCIDENTAL,
+   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT
+   LIMITED TO PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES, LOSS OF USE,
+   DATA, OR PROFITS, OR BUSINESS INTERRUPTION) ARISING OUT OF OR IN
+   CONNECTION WITH THE USE OR INABILITY TO USE THE SOFTWARE, EVEN IF
+   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+8. TERMINATION
+
+   This license is effective until terminated. It terminates automatically
+   upon expiration of the Trial Period or if you fail to comply with any
+   term of this Agreement. Upon termination, you must uninstall and
+   destroy all copies of the Software in your possession.
+
+9. GOVERNING LAW
+
+   This Agreement shall be governed by and construed in accordance with
+   applicable law. Any disputes arising under this Agreement shall be
+   subject to the exclusive jurisdiction of the courts in the applicable
+   jurisdiction.
+
+10. ENTIRE AGREEMENT
+
+    This Agreement constitutes the entire agreement between you and
+    pAiCoder concerning the Software and supersedes all prior or
+    contemporaneous understandings, negotiations, representations, or
+    agreements relating to the Software.
+
+For licensing inquiries, please contact: dachuyn@outlook.com
+
+---
+
+THIRD-PARTY ACKNOWLEDGEMENTS
+
+This software includes open-source components under their respective
+licenses:
+
+- Python (PSF License)
+- Rich (MIT License) — https://github.com/Textualize/rich
+- Anthropic Python SDK (MIT License) — https://github.com/anthropics/anthropic-sdk-python
+- OpenAI Python SDK (MIT License) — https://github.com/openai/openai-python
+- python-dotenv (BSD License) — https://github.com/theskumar/python-dotenv
+- PyYAML (MIT License) — https://github.com/yaml/pyyaml
+- Requests (Apache 2.0 License) — https://github.com/psf/requests
+- Pillow (HPND License) — https://github.com/python-pillow/Pillow
+- VS Code Extension API (MIT License) — https://github.com/microsoft/vscode
+
+Full license texts for third-party components are available at their
+respective project repositories listed above.
