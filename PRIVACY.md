@@ -21,7 +21,7 @@ pAiCoder does not collect, store, or transmit:
 * Personal information
 * Usage logs tied to your identity
 
-There is no user tracking, analytics backend, or telemetry system in v1.
+There is no user tracking, analytics backend, or telemetry system.
 
 ---
 
@@ -82,7 +82,7 @@ This Privacy Policy may be updated as new features are introduced (e.g., optiona
 
 ## 7. Contact
 
-For questions, contact: dachuyn@outlook.com
+For questions, contact: supports@paicoder.com
 
 ---
 

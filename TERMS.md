@@ -98,7 +98,7 @@ These Terms may be updated as the product evolves. Continued use of pAiCoder aft
 
 ## 10. Contact
 
-For questions/issues/questions, contact: dachuyn@outlook.com
+For questions/issues/questions, contact: supports@paicoder.com
 
 ---
 
