@@ -82,9 +82,7 @@ This Privacy Policy may be updated as new features are introduced (e.g., optiona
 
 ## 7. Contact
 
-For questions, contact:
-
-[Your Email or GitHub Link]
+For questions, contact: dachuyn@outlook.com
 
 ---
 
