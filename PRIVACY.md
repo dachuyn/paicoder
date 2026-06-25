@@ -1,6 +1,6 @@
 # Privacy Policy for pAiCoder
 
-**Effective Date:** [Insert Date]
+**Effective Date:** 06/25/2026
 
 ## Overview
 
