@@ -7,10 +7,10 @@ AWS deployment (CloudFormation stack, deployment scripts, .env, configs.py, etc)
 
   1. Open your project in VS Code with pAiCoder installed
   2. Cmd+Shift+P → pAiCoder: Setup - Configure API Keys & Roles
-  3. Add a design diagram or description file 
+  3. Add a design diagram or description file to project folder
   4. Right-click -> "Load-Design from this file"
-  5. Or from pAiCoder CHAT panel, type "load-design path/to/filename"
-  6. Or from pAiCoder CHAT panel, type "design text-description "
+  5. Or from pAiCoder CHAT prompt, type "load-design path/to/filename"
+  6. Or from pAiCoder CHAT prompt, type "design text-description "
   7. Fill in required secrets/keys and run "aws-deploy"
 
 ## What Gets Generated 
@@ -26,10 +26,11 @@ AWS deployment (CloudFormation stack, deployment scripts, .env, configs.py, etc)
       README.md           Deployment instructions
 
       deploy.sh           Local deploy script
-
+      
   .env                    secrets, keys, etc
 
-  configs.py              configurable settings
+  configs.py              configurable settings    
+      
 
 ## Contact
 
