@@ -1,4 +1,4 @@
-# pAiCoder — AWS Deployment Help
+# pAiCoder — AWS Deployment
 
 pAiCoder can take a system diagram or description, generate a complete
 AWS deployment (CloudFormation stack, deployment scripts, .env, configs.py, etc), and deploy the solution to AWS cloud for you! 
@@ -11,16 +11,24 @@ AWS deployment (CloudFormation stack, deployment scripts, .env, configs.py, etc)
   4. Right-click -> "Load-Design from this file"
   5. Or from pAiCoder CHAT panel, type "load-design path/to/filename"
   6. Or from pAiCoder CHAT panel, type "design text-description "
+  7. Fill in required secrets/keys and run "aws-deploy"
 
 ## What Gets Generated 
 
   aws/
+
     cloud/
+
       stack.yaml          CloudFormation template
+
       parameters.json     Stack parameters
+
       README.md           Deployment instructions
+
       deploy.sh           Local deploy script
+
   .env                    secrets, keys, etc
+
   configs.py              configurable settings
 
 ## Contact
