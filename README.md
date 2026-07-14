@@ -1,4 +1,4 @@
-# pAiCoder — Spec-First AI Design & Coding, Multi-Cloud & LLM Deployment (macOS)
+# pAiCoder — Spec-First AI Design & Coding Agent — Multi-Cloud & LLM Deployment (macOS)
 
 > **Free 30-day evaluation** · Idea → Spec → Code → Deploy · Bring your own models — Claude · Grok · GPT · Meta Muse Spark · local Ollama · **or an open-source LLM you host yourself**
 
