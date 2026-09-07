@@ -12,29 +12,26 @@ or using the Software, you agree to the terms of this license.
 1. GRANT OF LICENSE
 
    Subject to the terms of this Agreement, pAiCoder grants you a
-   non-exclusive, non-transferable, limited license to install and use
-   the Software solely for personal evaluation and trial purposes for a
-   period of 30 days from the date of first installation ("Trial Period").
+   non-exclusive, limited license to install and use the software for 
+   a period of 30 days from the date of first download ("Trial Period").
 
 2. RESTRICTIONS
 
    You may not:
-   a. Use the Software for commercial purposes during the Trial Period
-      without obtaining a commercial license from pAiCoder.
-   b. Copy, modify, merge, publish, distribute, sublicense, or sell
+   a. Copy, modify, merge, publish, distribute, sublicense, or sell
       copies of the Software or its source code.
-   c. Reverse engineer, decompile, or disassemble the Software, except
+   b. Reverse engineer, decompile, or disassemble the Software, except
       to the extent permitted by applicable law.
-   d. Remove or alter any proprietary notices, labels, or marks on the
+   c. Remove or alter any proprietary notices, labels, or marks on the
       Software.
-   e. Transfer, sublicense, or assign this license or the Software to
+   d. Transfer, sublicense, or assign this license or the Software to
       any third party.
 
 3. TRIAL PERIOD
 
-   The Software is provided for a 30-day evaluation period. After the
-   Trial Period expires, you must either obtain a commercial license or
-   uninstall and cease all use of the Software. pAiCoder reserves the
+   The Software is provided for evaluation purpose. After the Trial 
+   Period expires, you may download and use the software again if it is 
+   still available to continue your evaluation. pAiCoder reserves the
    right to enforce this limitation technically within the Software.
 
 4. API KEYS AND THIRD-PARTY SERVICES
@@ -73,9 +70,8 @@ or using the Software, you agree to the terms of this license.
 8. TERMINATION
 
    This license is effective until terminated. It terminates automatically
-   upon expiration of the Trial Period or if you fail to comply with any
-   term of this Agreement. Upon termination, you must uninstall and
-   destroy all copies of the Software in your possession.
+   upon expiration of the Trial Period. You can extend or obtain a commercial 
+   license by contacting pAiCoder.
 
 9. GOVERNING LAW
 
