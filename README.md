@@ -21,8 +21,8 @@ ghost-text completion, `design` → `implement`, multi-cloud deployment, LLM hos
 
 ```
 manager-deploy            # 1. start Aria, the manager
-engineer-deploy Ada       # 2. start your engineers — TWO is the sweet spot
-engineer-deploy Ava
+engineer-deploy Ava       # 2. start your engineers — TWO is the sweet spot
+engineer-deploy Ozo
 manager-recruit all       # 3. Aria adopts them — AFTER they are running
 engineer-status           # 4. who is up, and their private panel URLs
 ```
@@ -37,8 +37,18 @@ have none — and starts them.
 > `manager-recruit` adopts the engineers it can *find*, so it goes last. `engineer-deploy all`
 > starts the ones on this machine and skips any you have dismissed — name her to bring her back.
 
-**Two engineers is usually right.** They share one LLM quota, so a third mostly competes with the
-other two rather than finishing sooner. When many autonomous engineers are needed at the same time, use "/engineer-coder <anthropic|meta|openai|xai>" and/or "/engineer-planner <anthropic|meta|openai|xai>" to assign different LLM providers so that they don't complete on a single provider's LLM quota.
+**Two engineers is usually right.** They share a single LLM quota, so a third one mostly competes 
+with the other two instead of finishing the work sooner.
+
+If you need many concurrent autonomous engineers, go to the engineer’s web panel and temporarily 
+assign a different LLM provider with:
+
+```
+/engineer-coder <anthropic|meta|openai|xai>
+/engineer-planner <anthropic|meta|openai|xai>
+```
+
+This keeps the engineers from competing on the same provider’s quota.
 
 ---
 
