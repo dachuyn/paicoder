@@ -34,13 +34,16 @@ are talking to her directly. **`/help` in either panel** lists everything they a
 **No setup needed.** The first `manager-deploy` writes a working manager — and an engineer, if you
 have none — and starts them.
 
+**Customise the defaults.** Run `manager-design` (for Aria) or `engineer-design` (for the default
+engineer Ada) to set a custom project root directory, email, and voice.
+
 > `manager-recruit` adopts the engineers it can *find*, so it goes last. `engineer-deploy all`
 > starts the ones on this machine and skips any you have dismissed — name her to bring her back.
 
-**Two engineers is usually right.** They share a single LLM quota, so a third one mostly competes 
+**Two engineers is usually right.** They share a single LLM quota, so a third one mostly competes
 with the other two instead of finishing the work sooner.
 
-If you need many concurrent autonomous engineers, go to the engineer’s web panel and temporarily 
+If you need many concurrent autonomous engineers, go to the engineer's web panel and temporarily
 assign a different LLM provider with:
 
 ```
@@ -48,7 +51,7 @@ assign a different LLM provider with:
 /engineer-planner <anthropic|meta|openai|xai>
 ```
 
-This keeps the engineers from competing on the same provider’s quota.
+This keeps the engineers from competing on the same provider's quota.
 
 ---
 
@@ -315,6 +318,7 @@ run *these* commands on your behalf, so anything here is also something you can 
 |---|---|
 | ✍️ **Write code faster** | Open a Python file, write a docstring, press **Tab** to accept the ghost-text implementation. |
 | 🧱 **Build from an idea** | In that CHAT panel: `design a REST API for a todo app with auth` → review **SPEC.md** → `implement`. |
+| 📄 **Start a project from a file** | In the VS Code Explorer, right-click a project description file (`.txt`, `.md`, `.jpg`, `.png`) and choose **`pAiCoder: Load Design from this File`**. |
 | ☁️ **Deploy infrastructure** | right-click your diagram in the Explorer → **`pAiCoder: Load Design from this File`** → review → `aws-deploy` (or `azure-deploy`, `google-deploy`, `oracle-deploy`). |
 | 🤖 **Serve an open-source LLM** | In that CHAT panel: `llm-design` → pick **VM or Kubernetes** → answer a couple of questions → `llm-build` → `llm-deploy`. |
 | 🔗 **Code with your own model** | After deploying (or if you already run one): `llm-assign` → point pAiCoder's **CODER** role at your endpoint. |
