@@ -11,7 +11,7 @@ It is **spec-first** — nothing is built until you have seen and approved `SPEC
 assign Claude, Grok, GPT, MuseSpark, a local Ollama model, or your own self-hosted LLM to different roles, so
 speed, quality and cost are levers *you* control.
 
-**And when you want to do the work yourself**, the same engine is a spec-first coding assistant in your editor:
+**And when you want to work alongside the autonomous engineers **, the same engine is a spec-first coding assistant in your editor:
 ghost-text completion, `design` → `implement`, multi-cloud deployment, LLM hosting, even RTL. That is all
 [further down](#-the-coding-assistant--when-you-want-to-drive).
 
@@ -31,14 +31,14 @@ Each command prints a `127.0.0.1` URL protected by a one-time token. Open Aria's
 want, and she plans it, splits it into components, and dispatches them. Open an engineer's and you
 are talking to her directly. **`/help` in either panel** lists everything they accept.
 
-**No setup needed.** The first `manager-deploy` writes a working manager — and an engineer, if you
-have none — and starts them.
+**No setup needed.** The first `manager-deploy` designs a default manager (Aria) — and a default autonomous engineer (Ada). `engineer-deploy` starts the default engineer, Ada.
 
-**Customise the defaults.** Run `manager-design` (for Aria) or `engineer-design` (for the default
-engineer Ada) to set a custom project root directory, email, and voice.
+`engineer-deploy <name>` starts a custom (named) engineer (with default settings if not previously customized using `engineer-design <name>`).
+`manager-recruit all` adopts the engineers it can *find*, so it goes last. 
 
-> `manager-recruit` adopts the engineers it can *find*, so it goes last. `engineer-deploy all`
-> starts the ones on this machine and skips any you have dismissed — name her to bring her back.
+> **Customise the defaults.** Run `manager-design` (for Aria) or `engineer-design` (for the default
+> engineer Ada) or `engineer-design <name>` (for the other named
+> engineers) to customize project root directory, email, and voice. 
 
 **Two engineers is usually right.** They share a single LLM quota, so a third one mostly competes
 with the other two instead of finishing the work sooner.
@@ -51,7 +51,7 @@ assign a different LLM provider with:
 /engineer-planner <anthropic|meta|openai|xai>
 ```
 
-This keeps the engineers from competing on the same provider's quota.
+This keeps the engineers from competing on the same provider's quota. 
 
 ---
 
@@ -67,7 +67,7 @@ package installs, no test runs. What she produces is yours to run.
 
 - **her panel** — chat, watch the task list, answer questions, enter secrets safely;
 - **email** — put the command in the SUBJECT as `/<command>(<argument>)`, for example
-  `/new-project(url-shortener)` or `/zip-project()`. She replies with progress and artifacts, so you
+  `/new-project(url-shortener)` (with project description in the email body) or `/zip-project()`. She replies with progress and artifacts, so you
   can start work from a phone and read the result later.
 
 **Several at once, each on her own panel.** Open as many as you like in one browser — each holds her
@@ -77,25 +77,24 @@ own session.
 
 ## 🧑‍💼 Autonomous Manager — one idea, a whole system
 
-Aria takes a description, asks a planner to split it into components, writes a portfolio `SPEC.md`,
+Aria takes the description of your bigger project, asks a planner to split it into components, writes a portfolio `SPEC.md`,
 and sends it to you for review. On approval she dispatches each component to a free engineer,
 collects the artifacts, assembles them into one tree and audits the result.
 
 Pieces with no free engineer are **queued** and go out as soon as one finishes. She reaches local
 engineers directly, and remote ones by email.
 
-**Start a BIG project with the manager, not an engineer.** An engineer plans one SPEC in a single
+**Start a BIG project with the manager, Aria, not an engineer.** An engineer plans one SPEC in a single
 pass — directory tree, file names and phases all at once — and that gets thin when the project is
-large or spans several stacks. Aria splits it first, so each engineer plans a component she can hold
-in her head. A small, single-stack project is fine handed straight to an engineer.
+large or spans several tech stacks. Aria splits it first, so each engineer plans a component she can hold
+in her head. A small or medium project is fine handed straight to an engineer.
 
 Type **`/help`** in her panel — or an engineer's — for everything they accept.
 
-`manager-status` · `manager-roster` · `manager-inbox` — what she is doing, who she has, what arrived.
+`manager-status` · `manager-roster` · `manager-inbox` — what Aria is doing, who she manages, what arrived.
 `manager-design` reconfigures her; it is not needed to start.
 
 > **Both ship DORMANT.** Nothing runs until you deploy it, and everything stays on `127.0.0.1`.
-> Full details: `agent/manager/README.md` and `agent/engineer/README.md`.
 
 ---
 
@@ -106,21 +105,20 @@ Eight things people actually do, start to finish. Commands are typed in the pAiC
 
 ### 1 · Install the extension
 
-```bash
-git clone <your pAiCoder checkout> && cd coding-agent-v16
-./build-binary.sh              # builds dist/pAiCoder (Nuitka, 3–5 min)
-./install-vscode-extension.sh  # installs the VS Code extension
-```
+1. In VS Code, open the **Extensions** view — `Cmd+Shift+X`.
+2. Search for **pAiCoder** and click **Install**.
+3. Reload VS Code if prompted, then run `Cmd+Shift+P` → **pAiCoder: Download / Update Binary** — the
+   extension downloads the pAiCoder engine for you (if it didn't happen automatically; the same command updates it later).
 
-Reload VS Code. `Cmd+Shift+P` → type `pAiCoder` — you should see nine commands.
+That's it — `Cmd+Shift+P` → type `pAiCoder` to see the available commands for VS Code.
 
-### 2 · Add or change your API keys
+### 2 · Add your API keys and pick your models
 
 `Cmd+Shift+P` → **pAiCoder: Setup — Configure API Keys & Roles**.
 
-One place for all of them, and for which model plays which ROLE (planner, coder, auditor). Keys are
-written to `~/.paicoder/.env` and never leave your machine. In the panel, `llm-providers` lists what
-is registered and `llm-status` shows the current assignment.
+One screen for all your keys and for which model plays which role (PLANNER, CODER, AUDITOR, AUTO_AUDITOR). Add an
+Anthropic, xAI, OpenAI, or Meta key — or point a role at a local Ollama model — and you're ready. Your
+keys stay on your machine and are never sent anywhere except the provider you chose.
 
 ### 3 · Your first project, from a design
 
@@ -130,17 +128,17 @@ is registered and `llm-status` shows the current assignment.
 **Or in the panel:**
 
 ```
-load-design ./docs/architecture.png
-load-design(claude) ./docs/architecture.png    # Claude Vision — better on images
+load-design ./docs/architecture.txt
+load-design(claude) ./docs/architecture.png    # Temporarily design the SPEC with Anthropic
 ```
 
 pAiCoder reads the design, classifies the stack, writes `SPEC.md`, and shows it for review before
-anything is built. Approve, and it implements against that spec.
+anything is built. Modify or approve, and it implements against that spec.
 
 ### 4 · Drive it yourself — the coding assistant
 
-Open the panel and talk to it. It reads your workspace, edits files and runs commands, asking before
-each write unless `AUTO_APPROVE=true` is set in `~/.paicoder/.env`.
+Open the Chat panel and talk to it. It reads your workspace, edits files and runs commands, asking before
+each write. Prefer it to just proceed? `Cmd+Shift+P` → **pAiCoder: Toggle Auto-Approve**.
 
 ```
 implement SPEC.md          build what the spec describes
@@ -149,10 +147,10 @@ fix-audit                  fix what the audit found
 doctor                     health check — providers, tools, config
 ```
 
-### 5 · Hand a whole project to Ada — the autonomous engineer
+### 5 · Hand a whole project to Ada — the default autonomous engineer
 
 ```
-engineer-design       one wizard: her name, channels, contacts, safety
+engineer-design       one wizard: her name, channels, email, work schedule, etc
 engineer-deploy       starts her and prints her web panel URL
 engineer-status       running? her URL, mode, budgets
 engineer-stop         kill switch
@@ -161,12 +159,18 @@ engineer-stop         kill switch
 Open her URL. Give her a project in her panel and she plans, builds, audits and fixes it on her own,
 reporting as she goes. `/help` in her panel lists what she understands.
 
-### 6 · A bigger system — Aria and a team of engineers
+```
+engineer-design <name>      customizes additional autonomous engineer
+engineer-deploy <name>      starts (named) autonomous engineer
+engineer-stop <name>        stops (named) autonomous engineer
+```
+
+### 6 · A bigger system — Aria (the manager) and a team of engineers
 
 ```
-manager-design        configure Aria (identity, channels, the engineers she manages)
+manager-design        configure Aria (identity, channels, email, work schedule, etc)
 manager-deploy        starts her and prints her panel URL
-manager-recruit --all enrol the engineers on this machine
+manager-recruit --all enrol the engineers on this machine 
 manager-status        running? her URL and current project
 ```
 
@@ -175,7 +179,7 @@ engineer, collects the artifacts and assembles them. `/status` shows every compo
 it; `/audit-code` and `/fix-code` work on the assembled tree.
 
 **One engineer, one transport.** An engineer configured with email is not recruited locally — that
-is what stops duplicate requests and duplicate deliveries.
+is to allow the engineer to take request from her user or manager remotely (via email) without conflicts.
 
 ### 7 · Serve your own model
 
@@ -195,9 +199,6 @@ verilog-design    an HDL SPEC from a description
 verilog-build     generate the RTL
 ```
 
-**Off by default.** Enable `hdl_design.enable_verilog` in `agent/config.py` first; the commands tell
-you so if it is not.
-
 ---
 
 ## 🧹 Housekeeping
@@ -210,21 +211,19 @@ reset-system agents      the agents are REMOVED; pAiCoder is the coding agent it
 reset-system hard        agents, and the project registry too
 ```
 
-**`.env` and every project FILE survive all three resets.** Each asks you to type `I understand`
+**Your settings and every project FILE survive all three resets.** Each asks you to type `I understand`
 three times, and refuses while an agent is running.
 
 ## 🧠 Models — including local ones
 
-Set these in `~/.paicoder/.env`. Roles are assigned separately, so a fast local model can code while
-a stronger one reviews.
+Choose your models in **pAiCoder: Setup — Configure API Keys & Roles**. Roles are assigned
+separately, so a fast local model can code while a stronger one reviews. The built-in options:
 
-```bash
-ANTHROPIC_MODEL=claude-opus-5
-XAI_MODEL=grok-4.6
-OPENAI_MODEL=gpt-5.6-luna
-META_MODEL=muse-spark-1.2-contributor
-OLLAMA_MODEL=muse-glimmer:30b-mlx      # local, via Ollama
-```
+- **Anthropic** — claude-opus-5
+- **xAI** — grok-4.6
+- **OpenAI** — gpt-5.6-luna
+- **Meta** — muse-spark-1.3
+- **Ollama** (local) — muse-glimmer:30b-mlx
 
 **Local models via Ollama.** Install Ollama, pull a model, name it above — chat, streaming and tool
 calling work with no further setup:
@@ -234,7 +233,7 @@ ollama pull muse-glimmer               # Meta's open-source agentic model, ~18 G
 ```
 
 Use **`muse-glimmer:30b-mlx`** on Apple Silicon — the same model on Ollama's MLX engine.
-`llama3.1:8b` is the smaller default. Ollama is expected at `http://localhost:11434`.
+`llama3.1:latest` is the smaller default. Ollama is expected at `http://localhost:11434`.
 
 **Local vision.** `muse-glimmer` reads images, so **`load-design` works entirely on your machine** —
 drop in an architecture diagram and it never leaves the network. That matters when privacy outranks
@@ -244,11 +243,12 @@ Models without vision (`llama3.1`, most coder models) still handle text and tool
 simply skipped, with a note. `load-design` images also work with Anthropic, OpenAI, xAI, Meta, and
 any `llm-assign` endpoint.
 
-**Changing a model, live.** `set-anthropic-model`, `set-xai-model`, `set-openai-model` and
+**Changing a model temporarily** `set-anthropic-model`, `set-xai-model`, `set-openai-model` and
 `set-meta-model` take effect in the REPL immediately — no restart.
 
-A running engineer or manager is a **separate process**, so those do not reach her. Change hers from
-her own panel instead:
+A running engineer or manager is a **separate process**, and gets the default roles/providers/models. 
+
+Temporarily change hers from her own panel instead:
 
 ```
 /engineer-coder meta        # in an engineer's panel — her CODER, right now
@@ -257,20 +257,14 @@ her own panel instead:
 ```
 
 Each affects **only that engineer or manager**, takes effect on her next call, and lasts **until she
-restarts** — nothing is written to your `.env`. Ideal for trying a model on one engineer without
-disturbing the others. To make a change permanent, edit `~/.paicoder/.env`.
+restarts** — nothing is saved permanently. Ideal for trying a model on one engineer without disturbing
+the others. To make a change permanent, use **pAiCoder: Setup — Configure API Keys & Roles**.
 
-**A short command palette.** `Shift+Cmd+P` → "pAiCoder" lists the nine commands you actually reach
-for from there — the toggles, `Open Panel`, `Setup`, `Checkpoint`, `Load Design from this File` and
-`Download / Update Binary`. The rest are terminal-CLI commands and stay hidden. Nothing is removed;
-set `show_vscode_menus: True` in `agent/config.py` to list them all again.
+**A short command palette.** `Shift+Cmd+P` → "pAiCoder" lists the commands you reach for from the
+editor — the toggles, `Open Panel`, `Setup`, `Checkpoint`, `Load Design from this File`, and
+`Download / Update Binary`. The rest are panel commands you type inside the CHAT panel.
 
-**A short REPL `help`.** The provider-key and model setters (`set-anthropic-key`,
-`set-openai-model`, …) and the `parallel*` family are hidden from `help`, because the VS Code panel
-and the TUI config screen already do all of it — and eight one-per-provider setters grow the list
-with every provider added. **The commands still work when you type them.** Set
-`agent.show_repl_advanced: True`, or `PAICODER_REPL_ADVANCED=on`, to list them again. `setup` is
-the one entry point that replaces all eight, and every `llm*` command stays listed.
+**A short REPL `help`.** shows all REPL commands user can run from the VS Code or TUI Chat panel.
 
 **Big codebases.** pAiCoder reads up to **400,000 characters** of your workspace into an audit or a
 design pass — enough for a multi-component project whole. Raise or lower it for your setup:
@@ -283,17 +277,9 @@ PAICODER_MAX_FILE_CHARS=300000    # one very large generated file
 Lower it if you run a small local model — an 8K-token window holds roughly 32,000 characters, and
 overflowing it fails rather than costing money.
 
-**Any other model — `llm-assign`.** Register a self-hosted or external OpenAI-compatible endpoint and
-point a role at it:
+**Any other model — `llm-assign`.** Register a self-hosted or external OpenAI-compatible endpoint
 
-```bash
-CUSTOM_PROVIDERS=myllm
-MYLLM_BASE_URL=http://your-endpoint/v1
-MYLLM_MODEL=your-model
-```
-
-Then `llm-assign` → choose the role. `llm-providers` lists what is registered; `llm-unassign` undoes
-it.
+`llm-assign` → choose the role. `llm-providers` lists what is registered; `llm-unassign` undoes it.
 
 **Want to host one yourself?** `llm-design` → `llm-build` → `llm-deploy` sizes, generates and launches
 a serving endpoint — twelve clouds as a GPU VM, six as managed Kubernetes — then `llm-assign` points
@@ -301,11 +287,7 @@ pAiCoder at it.
 
 ---
 
-## 🧰 The coding assistant — when you want to drive
-
-Everything above is the team working for you. The rest of this page is pAiCoder as a **spec-first coding
-assistant in your editor** — the same engine, driven by you, one command at a time. The engineer and the manager
-run *these* commands on your behalf, so anything here is also something you can ask them to do.
+## 🧰 pAiCoder — The powerful spec-first coding assistant 
 
 ### Quick Start — two minutes to your first win (solo mode)
 
@@ -328,24 +310,14 @@ run *these* commands on your behalf, so anything here is also something you can 
 
 ---
 
-## Why developers like pAiCoder
+## Why you'll like pAiCoder
 
 - **You approve the plan first.** Every build starts from a `SPEC.md` you can read, edit, and accept — no black-box code dumps.
 - **Your models, your cost.** Mix providers by role — a fast model for completion, a strong one for design, an independent one for audits. Save up to ~70% on tokens versus single-model tools.
 - **Idea to running system, in one tool.** The same assistant designs the app, writes the code, provisions the cloud, and can even stand up an open-source LLM — each step gated by a deterministic audit.
 - **Close the loop on your own models.** Deploy an open-weight LLM to your own cloud, then assign it to a pAiCoder role and build with a model that's fully private and fully yours.
 - **It reads your diagrams.** Hand it an architecture image and it produces the spec *and* the infrastructure.
-
----
-
-## Design principles
-
-- **Protocol-first architecture.** pAiCoder runs deterministic, auditable workflows rather than an autonomous "black-box" agent, which keeps its behavior predictable — every step is one you can inspect and approve.
-- **Design-first.** Rather than jumping straight into code, it generates and refines a `SPEC.md` first, then builds from the plan you approved.
-- **Diagram understanding.** Give it an architecture diagram and it reasons about the design to produce an implementation plan — following how the components connect, not just recognizing icons.
-- **Multi-provider support.** Anthropic, xAI, OpenAI, Meta, and local Ollama are all first-class — plus any OpenAI-compatible endpoint you host — so you pick models by capability, cost, or preference and assign them per role.
-- **Infrastructure, not just application code.** The cloud workflows generate real infrastructure-as-code — CloudFormation for AWS, Bicep for Azure, Terraform for Google Cloud and Oracle, and Kubernetes manifests for container targets — along with the parameters, modules, and deploy/destroy scripts, extending the same spec-first flow into DevOps.
-- **Validate before you deploy.** Before touching any cloud, pAiCoder checks that every module and parameter is wired up and flags unfilled secrets (passwords, connection strings, admin IDs, model tokens) up front — a practical way to cut down on failed deployments.
+- **Nothing runs behind your back.** Every step is one you can see and approve, and a check runs before any deployment touches the cloud.
 
 ---
 
@@ -440,7 +412,7 @@ llm-providers   # list your registered custom providers and the roles they hold
 llm-unassign    # remove one and revert its role to the default
 ```
 
-`llm-assign` auto-detects an endpoint you just deployed (or lets you enter any OpenAI-compatible URL + model), then assigns it to a role — **PLANNER, CODER, AUDITOR, or AUTO_AUDITOR** — persisting it to `~/.paicoder/.env`. Deploy Qwen or Llama on your own GPU, set it as your `CODER`, and you're coding with a model that's fully private, fully yours, and free of per-token cost.
+`llm-assign` auto-detects an endpoint you just deployed (or lets you enter any OpenAI-compatible URL + model), then assigns it to a role — **PLANNER, CODER, AUDITOR, or AUTO_AUDITOR** — saving it on your machine. Deploy Qwen or Llama on your own GPU, set it as your `CODER`, and you're coding with a model that's fully private, fully yours, and free of per-token cost.
 
 ### Design hardware, too — idea → synthesizable SystemVerilog 🔧 *(new)*
 
@@ -467,25 +439,18 @@ verilog-design  →  verilog-build
 
 ### Your choice, your cost
 
-Most AI coding tools lock you into one model. pAiCoder lets you assign providers by role:
+Most AI coding tools lock you into one model. pAiCoder lets you assign a model to each ROLE — in
+**pAiCoder: Setup — Configure API Keys & Roles**:
 
-```bash
-# ~/.paicoder/.env
-PLANNER=anthropic                  # deep reasoning — design, spec, orchestration
-ANTHROPIC_MODEL=claude-opus-5
-CODER=openai                       # implementation + inline completion
-OPENAI_MODEL=gpt-5.6-luna
-AUDITOR=anthropic                  # an independent second opinion on audits
-META_MODEL=muse-spark-1.2-contributor   # key: MODEL_API_KEY (from dev.meta.ai)
-OLLAMA_MODEL=muse-glimmer:30b-mlx  # local — reads diagrams too (see below)
+- **PLANNER** — deep reasoning: design, spec, orchestration
+- **CODER** — implementation and inline completion
+- **AUDITOR** — an independent second opinion on audits
+- **AUTO_AUDITOR** — a hallucination guard
 
-# Or point a role at a model you host yourself (set up via `llm-assign`):
-# CODER=myqwen
-# MYQWEN_BASE_URL=http://<your-endpoint>/v1
-# MYQWEN_MODEL=Qwen/Qwen3-Coder-32B
-```
-
-**Recommended:** `PLANNER=anthropic` (claude-opus-5) and `CODER=openai` (gpt-5.6-luna) — planning quality matters most, and this pairing has been the most reliable in practice. `CODER=meta` (muse-spark-1.2-contributor) is a strong alternative and reads architecture diagrams. Want fully local and free? Point a role at **Ollama** — or at your own deployed open-source LLM.
+**Recommended:** PLANNER = Anthropic (claude-opus-5) and CODER = OpenAI (gpt-5.6-luna) — planning
+quality matters most, and this pairing has been the most reliable and cost-effective in practice. Meta (muse-spark) is a
+strong alternative and reads architecture diagrams. Want fully local and free? Point a role at
+**Ollama**, or at your own deployed open-source LLM (`llm-assign`).
 
 ### More in that CHAT panel
 
@@ -498,7 +463,7 @@ A full coding-agent **Project Chat**, **parallel implementation** across a whole
 Type these in the CHAT panel. `help` lists everything available in your build; `doctor` shows which features are enabled.
 
 **Build from an idea**
-- `design <description>` — generate a `SPEC.md` · `implement` — build it · `plan` — add a feature
+- `design <description>` or `load-design <filename>` — generate a `SPEC.md` · `implement` — build it · `feature` — add a sub-feature
 - `audit` · `security` · `refactor` — quality passes with one-shot fixes
 
 **Deploy app infrastructure** — AWS · Azure · Google · Oracle
@@ -515,12 +480,6 @@ Type these in the CHAT panel. `help` lists everything available in your build; `
 
 **Design hardware (SystemVerilog)**
 - `verilog-design` → `verilog-build` — idea → reviewable hardware `SPEC.md` → modern synthesizable SystemVerilog + a self-checking testbench, with device-aware lint/sim/synth commands you run yourself
-
-**Hand work to an autonomous engineer, or a manager**
-- `engineer-deploy` · `engineer-status` · `engineer-inbox` · `engineer-stop` — one engineer, or several by name
-- `manager-deploy` · `manager-status` · `manager-roster` · `manager-purge` — a manager who plans a whole product and dispatches the pieces
-- `engineer-design` · `manager-design` — change any of it; neither is needed to start
-- In their own panels: `/engineer-coder <provider>` · `/engineer-planner <provider>` · `/manager-planner <provider>` — swap a model live, for that one, until she restarts
 
 > Cloud, LLM-deployment, hardware-design, engineer and manager commands appear only when enabled in your build — run `doctor` to confirm.
 
