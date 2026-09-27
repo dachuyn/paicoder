@@ -11,9 +11,9 @@ It is **spec-first** — nothing is built until you have seen and approved `SPEC
 assign Claude, Grok, GPT, MuseSpark, a local Ollama model, or your own self-hosted LLM to different roles, so
 speed, quality and cost are levers *you* control.
 
-**And when you want to work alongside the autonomous engineers **, the same engine is a spec-first coding assistant in your editor:
+**And when you want to work alongside the autonomous engineers**, the same engine is a spec-first coding assistant in your editor:
 ghost-text completion, `design` → `implement`, multi-cloud deployment, LLM hosting, even RTL. That is all
-[further down](#-the-coding-assistant--when-you-want-to-drive).
+[further down](#paicoder--software-design--coding-agent-on-macos).
 
 ---
 
@@ -141,9 +141,12 @@ Open the Chat panel and talk to it. It reads your workspace, edits files and run
 each write. Prefer it to just proceed? `Cmd+Shift+P` → **pAiCoder: Toggle Auto-Approve**.
 
 ```
+adopt <github-url>         clone a GitHub repo and start working on it
 implement SPEC.md          build what the spec describes
 audit-code                 what is wrong with this codebase
 fix-audit                  fix what the audit found
+audit-security             security review — secrets, injection, vulnerable deps (Python + Node)
+fix-security               auto-fix the mechanical security issues it finds
 doctor                     health check — providers, tools, config
 ```
 
@@ -163,6 +166,7 @@ reporting as she goes. `/help` in her panel lists what she understands.
 engineer-design <name>      customizes additional autonomous engineer
 engineer-deploy <name>      starts (named) autonomous engineer
 engineer-stop <name>        stops (named) autonomous engineer
+engineer-delete <name>      remove a named engineer completely (asks first; Ada is protected)
 ```
 
 ### 6 · A bigger system — Aria (the manager) and a team of engineers
@@ -198,6 +202,61 @@ llm-assign      point a ROLE at the deployed model
 verilog-design    an HDL SPEC from a description
 verilog-build     generate the RTL
 ```
+
+---
+
+### 9 · Configure email so Ada and Aria can work remotely
+
+Ada (the engineer) and Aria (the manager) can each run from their own mailbox: you email a command in
+the **subject** (e.g. `/new-project(url-shortener)` with the description in the body), and they reply
+with progress and artifacts. Aria and her remote engineers coordinate by email too. Give each its own
+email account and set these environment variables — the `ENGINEER_` prefix configures Ada, the
+`MANAGER_` prefix configures Aria:
+
+| Variable (Ada / Aria) | Meaning |
+|---|---|
+| `ENGINEER_IMAP_HOST` / `MANAGER_IMAP_HOST` | incoming (IMAP) server |
+| `ENGINEER_SMTP_HOST` / `MANAGER_SMTP_HOST` | outgoing (SMTP) server |
+| `ENGINEER_IMAP_USER` / `MANAGER_IMAP_USER` | mailbox login (usually the full address) |
+| `ENGINEER_EMAIL_PASSWORD` / `MANAGER_EMAIL_PASSWORD` | the **app-specific password** — used for both IMAP and SMTP |
+| `ENGINEER_SMTP_PORT` / `MANAGER_SMTP_PORT` | optional — defaults to `587` (STARTTLS) |
+
+Shortcut: if IMAP and SMTP share one host, set `ENGINEER_EMAIL_HOST` (or `MANAGER_EMAIL_HOST`) once
+instead of the two `*_HOST` vars.
+
+**iCloud** — `imap.mail.me.com` / `smtp.mail.me.com` (a working example):
+
+```
+ENGINEER_EMAIL_PASSWORD=<ada_app_password>
+ENGINEER_IMAP_HOST=imap.mail.me.com
+ENGINEER_IMAP_USER=<ada_user_name>
+ENGINEER_SMTP_HOST=smtp.mail.me.com
+```
+
+**Gmail** — `imap.gmail.com` / `smtp.gmail.com`:
+
+```
+ENGINEER_EMAIL_PASSWORD=<ada_app_password>
+ENGINEER_IMAP_HOST=imap.gmail.com
+ENGINEER_IMAP_USER=ada@gmail.com
+ENGINEER_SMTP_HOST=smtp.gmail.com
+```
+
+**Outlook / Microsoft 365** — `outlook.office365.com` / `smtp.office365.com`:
+
+```
+ENGINEER_EMAIL_PASSWORD=<ada_app_password>
+ENGINEER_IMAP_HOST=outlook.office365.com
+ENGINEER_IMAP_USER=ada@outlook.com
+ENGINEER_SMTP_HOST=smtp.office365.com
+```
+
+All three need an **app-specific password** (generated in your account's security settings with
+2-factor enabled) — a normal login password won't authenticate over IMAP/SMTP. Provider auth policies
+change, so if a login is rejected, check your provider's current "IMAP/SMTP access" and "app password"
+docs. Note on Outlook/Microsoft 365: Microsoft has been phasing out basic-auth IMAP/SMTP — if your
+account rejects the app-password login it likely requires OAuth, and iCloud or Gmail are the smoother
+choices today.
 
 ---
 
@@ -266,17 +325,6 @@ editor — the toggles, `Open Panel`, `Setup`, `Checkpoint`, `Load Design from t
 
 **A short REPL `help`.** shows all REPL commands user can run from the VS Code or TUI Chat panel.
 
-**Big codebases.** pAiCoder reads up to **400,000 characters** of your workspace into an audit or a
-design pass — enough for a multi-component project whole. Raise or lower it for your setup:
-
-```bash
-PAICODER_CONTEXT_BUDGET=1200000   # a large monorepo on a model with a big window
-PAICODER_MAX_FILE_CHARS=300000    # one very large generated file
-```
-
-Lower it if you run a small local model — an 8K-token window holds roughly 32,000 characters, and
-overflowing it fails rather than costing money.
-
 **Any other model — `llm-assign`.** Register a self-hosted or external OpenAI-compatible endpoint
 
 `llm-assign` → choose the role. `llm-providers` lists what is registered; `llm-unassign` undoes it.
@@ -286,8 +334,11 @@ a serving endpoint — twelve clouds as a GPU VM, six as managed Kubernetes — 
 pAiCoder at it.
 
 ---
+# pAiCoder — Software Design & Coding Agent, on macOS
 
-## 🧰 pAiCoder — The powerful spec-first coding assistant 
+## 🧰 The powerful spec-first coding assistant 
+
+> **Free 30-day evaluation** · Design from anything · Bring your own models — Claude · Grok · GPT · Meta Muse Spark · local Ollama · **or an open-source LLM you host yourself**
 
 ### Quick Start — two minutes to your first win (solo mode)
 
@@ -481,8 +532,6 @@ Type these in the CHAT panel. `help` lists everything available in your build; `
 **Design hardware (SystemVerilog)**
 - `verilog-design` → `verilog-build` — idea → reviewable hardware `SPEC.md` → modern synthesizable SystemVerilog + a self-checking testbench, with device-aware lint/sim/synth commands you run yourself
 
-> Cloud, LLM-deployment, hardware-design, engineer and manager commands appear only when enabled in your build — run `doctor` to confirm.
-
 ---
 
 ## Evaluation License
@@ -497,4 +546,3 @@ pAiCoder is free to use for **30 days** from first download. See [LICENSE](https
 - Contact: supports@paicoder.com
 
 ---
-
