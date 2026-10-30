@@ -137,8 +137,10 @@ anything is built. Modify or approve, and it implements against that spec.
 
 ### 4 · Drive it yourself — the coding assistant
 
-Open the Chat panel and talk to it. It reads your workspace, edits files and runs commands, asking before
-each write. Prefer it to just proceed? `Cmd+Shift+P` → **pAiCoder: Toggle Auto-Approve**.
+Open the Chat panel and talk to it. It reads your workspace, edits files and runs commands — and
+asks you first before each write, each shell/Python command, and before it installs a package or
+initializes a git repo. Prefer it to just proceed? `Cmd+Shift+P` → **pAiCoder: Toggle Auto-Approve**.
+By default the agent has no web access; type `enable-web` if you want it to look up current docs.
 
 ```
 adopt <github-url>         clone a GitHub repo and start working on it
@@ -278,7 +280,7 @@ three times, and refuses while an agent is running.
 Choose your models in **pAiCoder: Setup — Configure API Keys & Roles**. Roles are assigned
 separately, so a fast local model can code while a stronger one reviews. The built-in options:
 
-- **Anthropic** — claude-opus-5
+- **Anthropic** — claude-opus-5-5
 - **xAI** — grok-4.6
 - **OpenAI** — gpt-5.6-luna
 - **Meta** — muse-spark-1.3
@@ -498,7 +500,7 @@ Most AI coding tools lock you into one model. pAiCoder lets you assign a model t
 - **AUDITOR** — an independent second opinion on audits
 - **AUTO_AUDITOR** — a hallucination guard
 
-**Recommended:** PLANNER = Anthropic (claude-opus-5) and CODER = OpenAI (gpt-5.6-luna) — planning
+**Recommended:** PLANNER = Anthropic (claude-opus-5-5) and CODER = OpenAI (gpt-5.6-luna) — planning
 quality matters most, and this pairing has been the most reliable and cost-effective in practice. Meta (muse-spark) is a
 strong alternative and reads architecture diagrams. Want fully local and free? Point a role at
 **Ollama**, or at your own deployed open-source LLM (`llm-assign`).
@@ -516,6 +518,11 @@ Type these in the CHAT panel. `help` lists everything available in your build; `
 **Build from an idea**
 - `design <description>` or `load-design <filename>` — generate a `SPEC.md` · `implement` — build it · `feature` — add a sub-feature
 - `audit` · `security` · `refactor` — quality passes with one-shot fixes
+
+**Web access — off by default** · `enable-web` / `disable-web`
+Turns the agent's web tools on or off for the session (**off by default**, so out of the box the agent uses only your project and its own knowledge — no network). When on, the agent can search the web and read pages, and pAiCoder asks you to approve each call — showing the exact query or URL — unless auto-approve is on.
+- `web_search` queries two search engines — **DuckDuckGo**, with **Bing** as a fallback.
+- `web_fetch` can only open a built-in list of **official documentation sites** (Python, MDN, the AWS/GCP/Azure/Oracle docs, GitHub, PyPI/npm, and the like). That list is the safety boundary — it can't be changed or widened to private or internal addresses. Search can range more widely, but only those official pages can actually be fetched and read.
 
 **Deploy app infrastructure** — AWS · Azure · Google · Oracle
 - `aws-deploy` · `azure-deploy` · `google-deploy` · `oracle-deploy`
