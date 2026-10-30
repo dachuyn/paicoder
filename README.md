@@ -176,7 +176,7 @@ engineer-delete <name>      remove a named engineer completely (asks first; Ada 
 ```
 manager-design        configure Aria (identity, channels, email, work schedule, etc)
 manager-deploy        starts her and prints her panel URL
-manager-recruit --all enrol the engineers on this machine 
+manager-recruit all   enrol the engineers on this machine
 manager-status        running? her URL and current project
 ```
 
@@ -304,8 +304,9 @@ Models without vision (`llama3.1`, most coder models) still handle text and tool
 simply skipped, with a note. `load-design` images also work with Anthropic, OpenAI, xAI, Meta, and
 any `llm-assign` endpoint.
 
-**Changing a model temporarily** `set-anthropic-model`, `set-xai-model`, `set-openai-model` and
-`set-meta-model` take effect in the REPL immediately — no restart.
+**Changing a model temporarily** — in the REPL, `llm(provider:model)` switches the CODER's model for
+the current session (and `llm` shows every role's current model, `llm reset` reverts). To change a
+model permanently, use **pAiCoder: Setup — Configure API Keys & Roles**.
 
 A running engineer or manager is a **separate process**, and gets the default roles/providers/models. 
 
@@ -382,7 +383,7 @@ pAiCoder at it.
 description / doc / diagram  →  SPEC.md  →  code  →  deployment
 ```
 
-Describe it, sketch it, or drop in a diagram — pAiCoder writes a reviewable spec, you approve it, then it implements. Add features later with `plan`, build with `implement`, and keep quality high with `audit` and `security` (each offers one-shot fixes).
+Describe it, sketch it, or drop in a diagram — pAiCoder writes a reviewable spec, you approve it, then it implements. Add features later with `add-feature`, build with `implement`, and keep quality high with `audit` and `security` (each offers one-shot fixes).
 
 ### One idea, twelve stacks 🌐
 
@@ -516,7 +517,7 @@ A full coding-agent **Project Chat**, **parallel implementation** across a whole
 Type these in the CHAT panel. `help` lists everything available in your build; `doctor` shows which features are enabled.
 
 **Build from an idea**
-- `design <description>` or `load-design <filename>` — generate a `SPEC.md` · `implement` — build it · `feature` — add a sub-feature
+- `design <description>` or `load-design <filename>` — generate a `SPEC.md` · `implement` — build it · `add-feature` — add a sub-feature
 - `audit` · `security` · `refactor` — quality passes with one-shot fixes
 
 **Web access — off by default** · `enable-web` / `disable-web`
