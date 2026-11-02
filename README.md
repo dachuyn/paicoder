@@ -98,6 +98,36 @@ Type **`/help`** in her panel — or an engineer's — for everything they accep
 
 ---
 
+## 🛰️ The Command Center — ONE screen for your whole autonomous team and projects
+
+```
+command-center            # open the live board for Aria + every engineer
+```
+
+Once you are running a manager and a few engineers, **`command-center` is the first thing to type.** It
+opens a single `127.0.0.1` page (token-protected, like the panels) that pulls everything onto one screen
+— and it is a true command center, not just a dashboard: you drive the whole team from it.
+
+**See the whole portfolio at a glance**
+- **Aria's section** — her big `SPEC.md` rendered live, her activity **LOGS**, and her plan-review controls.
+- **The team** — your **recruited** roster and the **free** engines on this machine, each with live state.
+- **The component interconnect** — the architecture diagram Aria planned, each component **colored by
+  delivery state** (pending → queued → building → done), with the protocols on the edges. Drag any
+  component to untangle the layout; the arrows follow.
+- **Needs-you**, the assembled **portfolio tree**, and a running **activity timeline**.
+
+**Act on it, without opening a single panel**
+- **Recruit / dismiss** engineers, or spin up a **new** one, straight from the team pools.
+- **Prototype a design in place** — **Upload Design** (drop an image, PDF, or text file and Aria plans a
+  fresh project) or **Change Design** (reshape the plan while it is in review).
+- **Proceed** dispatches the approved plan to your engineers; **Cancel** stops the project cold.
+- **Open** any engineer's panel in a click, or copy the **TUI** command to drop into that project.
+
+It is read-through-to-live: the board reflects exactly what Aria and the engineers are doing, and every
+action it offers is the same one you would otherwise type into a panel — just gathered in one place.
+
+---
+
 ## 📋 Common workflows
 
 Eight things people actually do, start to finish. Commands are typed in the pAiCoder panel
